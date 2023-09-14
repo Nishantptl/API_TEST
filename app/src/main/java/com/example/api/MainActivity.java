@@ -27,8 +27,9 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-
-    private static final String url = "http://192.168.51.236:9999/getseasons";
+    //helly's ip: 192.168.123.35
+    //nishi's ip: 192.168.51.236
+    private static final String url = "http://192.168.123.35:9999/getseasons";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
