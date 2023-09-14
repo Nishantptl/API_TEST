@@ -1,8 +1,10 @@
 package com.example.api;
 
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,9 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
 
-    model data[];
+    Category data[];
 
-    public myAdapter(model[] data) {
+    public myAdapter(Category data[]) {
         this.data = data;
     }
 
@@ -25,10 +27,8 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
-        holder.title.setText(data[position].title);
-        holder.userid.setText(data[position].userid);
         holder.id.setText(data[position].id);
-        holder.body.setText(data[position].body);
+        holder.name.setText(data[position].name);
     }
 
     @Override
@@ -37,13 +37,15 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
     }
 
     class myViewHolder extends RecyclerView.ViewHolder{
-        TextView userid, id, title, body;
+        TextView id, name;
+        ImageView image;
         public myViewHolder(@NonNull View itemView){
             super(itemView);
-            userid = itemView.findViewById(R.id.userid);
-            id = itemView.findViewById(R.id.id);
-            title = itemView.findViewById(R.id.title);
-            body = itemView.findViewById(R.id.body);
+            name =itemView.findViewById(R.id.title);
+
+            id = itemView.findViewById(R.id.Id);
+//            image = itemView.findViewById(R.id.imageView);
+
 
         }
     }
