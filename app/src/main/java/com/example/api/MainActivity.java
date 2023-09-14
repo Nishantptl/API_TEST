@@ -24,12 +24,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     //helly's ip: 192.168.123.35
     //nishi's ip: 192.168.51.236
-    private static final String url = "http://192.168.123.35:9999/getseasons";
+    private static final String url = "http://192.168.51.236:9999/gettopdestination";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         RequestQueue requestQueue;
         requestQueue = Volley.newRequestQueue(this);
 
+        ArrayList<String> destination = new ArrayList<>();
+
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
                 url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -49,10 +53,19 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("Response", response.toString());
                     JSONArray array = response.getJSONArray("data");    //data array
                    Log.d("array", array.toString());
-                    JSONObject myObj = array.getJSONObject(0);
-                    Log.d("myobj",myObj.toString());
-                    JSONArray mySeason = myObj.getJSONArray("Season");
-                    Log.d("season", mySeason.toString());
+                   for(int i=0; i<=array.length(); i++){
+                       JSONObject obj = array.getJSONObject(i);
+
+                       destination.add(obj.getString("DestinationName"));
+
+                       Log.d("dest", String.valueOf(destination));
+//                       JSONArray dest = obj.getJSONArray("DestinationName");
+//                       Log.d("DEST", dest.toString());
+                   }
+//                    JSONObject myObj = array.getJSONObject(0);
+//                    Log.d("myobj",myObj.toString());
+//                    JSONArray mySeason = myObj.getJSONArray("Season");
+//                    Log.d("season", mySeason.toString());
 
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
