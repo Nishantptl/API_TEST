@@ -1,5 +1,6 @@
 package com.example.api;
 
+
 import java.util.ArrayList;
 
 public class ModelDest {
@@ -7,13 +8,15 @@ public class ModelDest {
     String Id, destinationName, aboutPlace, history, attraction, thumbnaillUrl, holiday,webLink,
     location, district, duration, rating, createdAt;
 
-    ArrayList<String> photos, category, season;
+
+//    ArrayList<String> photos, category, season;
 
     public ModelDest() {
     }
 
     public ModelDest(String id, String destinationName, String aboutPlace, String history, String attraction, String thumbnaillUrl,
-                     String holiday, String webLink, String location, String district, String duration, String rating, String createdAt, ArrayList<String> photos, ArrayList<String> category, ArrayList<String> season) {
+                     String holiday, String webLink, String location, String district, String duration, String rating, String createdAt) {
+
         Id = id;
         this.destinationName = destinationName;
         this.aboutPlace = aboutPlace;
@@ -27,9 +30,6 @@ public class ModelDest {
         this.duration = duration;
         this.rating = rating;
         this.createdAt = createdAt;
-        this.photos = photos;
-        this.category = category;
-        this.season = season;
     }
 
     public String getId() {
@@ -136,27 +136,4 @@ public class ModelDest {
         this.createdAt = createdAt;
     }
 
-    public ArrayList<String> getPhotos() {
-        return photos;
-    }
-
-    public void setPhotos(ArrayList<String> photos) {
-        this.photos = photos;
-    }
-
-    public ArrayList<String> getCategory() {
-        return category;
-    }
-
-    public void setCategory(ArrayList<String> category) {
-        this.category = category;
-    }
-
-    public ArrayList<String> getSeason() {
-        return season;
-    }
-
-    public void setSeason(ArrayList<String> season) {
-        this.season = season;
-    }
 }

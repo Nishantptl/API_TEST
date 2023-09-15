@@ -24,7 +24,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
         RequestQueue requestQueue;
@@ -45,6 +49,24 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<String> destination = new ArrayList<>();
 
+//        StringRequest request = new StringRequest(url, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//
+//            Log.d("Response", response);
+//
+////                GsonBuilder builder = new GsonBuilder();
+////                Gson gson = builder.create();
+////                ModelDest data[] = gson.fromJson()
+//
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//
+//            }
+//        });
+        ArrayList<ModelDest> dataList = new ArrayList<>();
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
                 url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -53,11 +75,52 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("Response", response.toString());
                     JSONArray array = response.getJSONArray("data");    //data array
                    Log.d("array", array.toString());
+                   if(array.length()>0){
+                       for(int i=0; i< array.length(); i++){
+                           JSONObject myobj =  array.getJSONObject(i);
+                           String id = myobj.getString("_id");
+                           String Destination = myobj.getString("DestinationName");
+                           Log.d("Dest", Destination);
+                           String History = myobj.getString("BriefHistory");
+                           String aboutPlace = myobj.getString("AboutPlace");
+                           String attraction = myobj.getString("MainAttractions");
+                           String url = myobj.getString("Thumbnail");
+//                           URL u = myobj.getString("Thumbnail");
+                           String holiday = myobj.getString("Holiday");
+                           String link = myobj.getString("OfficialWebsiteLink");
+                           String location = myobj.getString("Location");
+                           String district = myobj.getString("District");
+                           String duration = myobj.getString("DurationOfVisit");
+                           String rating = myobj.getString("Rating");
+                           String createdat = myobj.getString("createdAt");
+//                           ArrayList<String> photos = myobj.getJSONArray("RelatedPhotos");
+                           dataList.add(new ModelDest(id, Destination, aboutPlace, History, attraction, url, holiday,
+                                   link, location, district, duration, rating, createdat));
+                       }
+                   }
+                   Log.d("List", dataList.toString());
+                    MyAdapter myAdapter = new MyAdapter(dataList);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                    recyclerView.setAdapter(myAdapter);
 
-                   GsonBuilder builder = new GsonBuilder();
-                   Gson gson = builder.create();
+//                    String Id, destinationName, aboutPlace, history, attraction, thumbnaillUrl, holiday,webLink,
+//                            location, district, duration, rating, createdAt;
+//
+//                    ArrayList<String> photos, category, season;
 
-                   ModelDest data[] = gson.fromJson(String.valueOf(array), ModelDest[].class);
+
+
+
+
+//
+//                   GsonBuilder builder = new GsonBuilder();
+//                   Gson gson = builder.create();
+//                   ModelDest data[] = new ModelDest[response.getJSONArray("data").length()];
+//
+////                   ModelDest data[] = gson.fromJson(String.valueOf(array),ModelDest[].class);
+//                   Log.d("Data", Arrays.toString(data));
+//                   MyAdapter myAdapter = new MyAdapter(data);
+//                   recyclerView.setAdapter(myAdapter);
 
 //                   for(int i=0; i<=array.length(); i++){
 //                       JSONObject obj = array.getJSONObject(i);
@@ -84,6 +147,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         requestQueue.add(jsonObjectRequest);
-
+        MyAdapter myAdapter = new MyAdapter(dataList);
+        recyclerView.setAdapter(myAdapter);
+//
     }
 }
