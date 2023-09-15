@@ -1,5 +1,6 @@
 package com.example.api;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import java.util.List;
-
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
+    Context context;
     ModelDest data[];
 
 
-    public MyAdapter(List<ModelDest> data) {
-        this.data = data.toArray(new ModelDest[0]);
+    public MyAdapter() {
+        this.data = data.;
+        this.context=context;
     }
 
     @NonNull
@@ -37,6 +38,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.destName.setText(data[position].getDestinationName());
         holder.history.setText(data[position].getHistory());
         holder.location.setText(data[position].getLocation());
+//        holder.image.setImageURI(data[position].getThumb());
+        Glide.with(context).load(data[position].getThumb()).into(holder.image);
+        //holder.image.setImageBitmap(image);
     }
 
 
@@ -49,6 +53,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         ImageView thumb;
         TextView destName, history, location;
+        ImageView image;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -56,6 +61,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             destName = itemView.findViewById(R.id.DestName);
             history = itemView.findViewById(R.id.History);
             location = itemView.findViewById(R.id.location);
+            image = itemView.findViewById(R.id.imageView);
+
+//            Glide.with(context).load(data[]).into(image);
+
         }
     }
 

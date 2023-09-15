@@ -1,12 +1,16 @@
 package com.example.api;
 
 
-import java.util.ArrayList;
+import android.net.Uri;
+
+import java.net.URI;
 
 public class ModelDest {
 
-    String Id, destinationName, aboutPlace, history, attraction, thumbnaillUrl, holiday,webLink,
+    String Id, destinationName, aboutPlace, history, attraction, holiday,webLink,
     location, district, duration, rating, createdAt;
+//    URI thumbnaillUri;
+    String thumb;
 
 
 //    ArrayList<String> photos, category, season;
@@ -14,7 +18,7 @@ public class ModelDest {
     public ModelDest() {
     }
 
-    public ModelDest(String id, String destinationName, String aboutPlace, String history, String attraction, String thumbnaillUrl,
+    public ModelDest(String id, String destinationName, String aboutPlace, String history, String attraction, String thumb,
                      String holiday, String webLink, String location, String district, String duration, String rating, String createdAt) {
 
         Id = id;
@@ -22,7 +26,7 @@ public class ModelDest {
         this.aboutPlace = aboutPlace;
         this.history = history;
         this.attraction = attraction;
-        this.thumbnaillUrl = thumbnaillUrl;
+        this.thumb = thumb;
         this.holiday = holiday;
         this.webLink = webLink;
         this.location = location;
@@ -72,12 +76,12 @@ public class ModelDest {
         this.attraction = attraction;
     }
 
-    public String getThumbnaillUrl() {
-        return thumbnaillUrl;
+    public String getThumb() {
+        return thumb;
     }
 
-    public void setThumbnaillUrl(String thumbnaillUrl) {
-        this.thumbnaillUrl = thumbnaillUrl;
+    public void setThumb(String thumb) {
+        this.thumb = thumb;
     }
 
     public String getHoliday() {

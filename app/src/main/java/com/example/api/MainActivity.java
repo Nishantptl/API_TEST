@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.android.volley.Request;
@@ -24,6 +28,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -84,8 +89,12 @@ public class MainActivity extends AppCompatActivity {
                            String History = myobj.getString("BriefHistory");
                            String aboutPlace = myobj.getString("AboutPlace");
                            String attraction = myobj.getString("MainAttractions");
-                           String url = myobj.getString("Thumbnail");
+//                           Uri uri = (Uri) myobj.get("Thumbnail");
+                          // Log.d("uri", String.valueOf(uri));
 //                           URL u = myobj.getString("Thumbnail");
+                          // Bitmap bm = BitmapFactory.decodeStream(myobj.("Thumbnail"));
+                           String uri = myobj.getString("Thumbnail");
+
                            String holiday = myobj.getString("Holiday");
                            String link = myobj.getString("OfficialWebsiteLink");
                            String location = myobj.getString("Location");
@@ -94,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                            String rating = myobj.getString("Rating");
                            String createdat = myobj.getString("createdAt");
 //                           ArrayList<String> photos = myobj.getJSONArray("RelatedPhotos");
-                           dataList.add(new ModelDest(id, Destination, aboutPlace, History, attraction, url, holiday,
+                           dataList.add(new ModelDest(id, Destination, aboutPlace, History, attraction, uri, holiday,
                                    link, location, district, duration, rating, createdat));
                        }
                    }
