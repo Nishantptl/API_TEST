@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-
         RequestQueue requestQueue;
         requestQueue = Volley.newRequestQueue(this);
 
@@ -67,13 +66,13 @@ public class MainActivity extends AppCompatActivity {
                            JSONObject myobj =  array.getJSONObject(i);
                            String id = myobj.getString("_id");
                            String Destination = myobj.getString("DestinationName");
-                           Log.d("Dest", Destination);
+                           //Log.d("Dest", Destination);
                            String History = myobj.getString("BriefHistory");
                            String aboutPlace = myobj.getString("AboutPlace");
                            String attraction = myobj.getString("MainAttractions");
 
                            String uri = myobj.getString("Thumbnail");
-                           Log.d("uri", uri);
+                          // Log.d("uri", uri);
                            uri=uri.replace("localhost","192.168.51.236");
 
                            String holiday = myobj.getString("Holiday");
@@ -88,11 +87,10 @@ public class MainActivity extends AppCompatActivity {
                                    link, location, district, duration, rating, createdat));
                        }
                    }
-                   Log.d("List", dataList.toString());
+                   //Log.d("List", dataList.toString());
                     MyAdapter myAdapter = new MyAdapter(getApplicationContext(), dataList);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                     recyclerView.setAdapter(myAdapter);
-
 
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
