@@ -52,25 +52,6 @@ public class MainActivity extends AppCompatActivity {
         RequestQueue requestQueue;
         requestQueue = Volley.newRequestQueue(this);
 
-        ArrayList<String> destination = new ArrayList<>();
-
-//        StringRequest request = new StringRequest(url, new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//
-//            Log.d("Response", response);
-//
-////                GsonBuilder builder = new GsonBuilder();
-////                Gson gson = builder.create();
-////                ModelDest data[] = gson.fromJson()
-//
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//
-//            }
-//        });
         ArrayList<ModelDest> dataList = new ArrayList<>();
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
@@ -90,10 +71,7 @@ public class MainActivity extends AppCompatActivity {
                            String History = myobj.getString("BriefHistory");
                            String aboutPlace = myobj.getString("AboutPlace");
                            String attraction = myobj.getString("MainAttractions");
-//                           Uri uri = (Uri) myobj.get("Thumbnail");
-                          // Log.d("uri", String.valueOf(uri));
-//                           URL u = myobj.getString("Thumbnail");
-                          // Bitmap bm = BitmapFactory.decodeStream(myobj.("Thumbnail"));
+
                            String uri = myobj.getString("Thumbnail");
                            Log.d("uri", uri);
                            uri=uri.replace("localhost","192.168.51.236");
@@ -115,38 +93,6 @@ public class MainActivity extends AppCompatActivity {
                     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                     recyclerView.setAdapter(myAdapter);
 
-//                    String Id, destinationName, aboutPlace, history, attraction, thumbnaillUrl, holiday,webLink,
-//                            location, district, duration, rating, createdAt;
-//
-//                    ArrayList<String> photos, category, season;
-
-
-
-
-
-//
-//                   GsonBuilder builder = new GsonBuilder();
-//                   Gson gson = builder.create();
-//                   ModelDest data[] = new ModelDest[response.getJSONArray("data").length()];
-//
-////                   ModelDest data[] = gson.fromJson(String.valueOf(array),ModelDest[].class);
-//                   Log.d("Data", Arrays.toString(data));
-//                   MyAdapter myAdapter = new MyAdapter(data);
-//                   recyclerView.setAdapter(myAdapter);
-
-//                   for(int i=0; i<=array.length(); i++){
-//                       JSONObject obj = array.getJSONObject(i);
-//
-//                       destination.add(obj.getString("DestinationName"));
-//
-//                       Log.d("dest", String.valueOf(destination));
-////                       JSONArray dest = obj.getJSONArray("DestinationName");
-////                       Log.d("DEST", dest.toString());
-//                   }
-//                    JSONObject myObj = array.getJSONObject(0);
-//                    Log.d("myobj",myObj.toString());
-//                    JSONArray mySeason = myObj.getJSONArray("Season");
-//                    Log.d("season", mySeason.toString());
 
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
