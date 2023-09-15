@@ -53,15 +53,21 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("Response", response.toString());
                     JSONArray array = response.getJSONArray("data");    //data array
                    Log.d("array", array.toString());
-                   for(int i=0; i<=array.length(); i++){
-                       JSONObject obj = array.getJSONObject(i);
 
-                       destination.add(obj.getString("DestinationName"));
+                   GsonBuilder builder = new GsonBuilder();
+                   Gson gson = builder.create();
 
-                       Log.d("dest", String.valueOf(destination));
-//                       JSONArray dest = obj.getJSONArray("DestinationName");
-//                       Log.d("DEST", dest.toString());
-                   }
+                   ModelDest data[] = gson.fromJson(String.valueOf(array), ModelDest[].class);
+
+//                   for(int i=0; i<=array.length(); i++){
+//                       JSONObject obj = array.getJSONObject(i);
+//
+//                       destination.add(obj.getString("DestinationName"));
+//
+//                       Log.d("dest", String.valueOf(destination));
+////                       JSONArray dest = obj.getJSONArray("DestinationName");
+////                       Log.d("DEST", dest.toString());
+//                   }
 //                    JSONObject myObj = array.getJSONObject(0);
 //                    Log.d("myobj",myObj.toString());
 //                    JSONArray mySeason = myObj.getJSONArray("Season");
