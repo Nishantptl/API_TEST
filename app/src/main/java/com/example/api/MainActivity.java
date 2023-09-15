@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
         ArrayList<ModelDest> dataList = new ArrayList<>();
+
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
                 url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -94,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
 //                           URL u = myobj.getString("Thumbnail");
                           // Bitmap bm = BitmapFactory.decodeStream(myobj.("Thumbnail"));
                            String uri = myobj.getString("Thumbnail");
+                           Log.d("uri", uri);
+                           uri=uri.replace("localhost","192.168.51.236");
 
                            String holiday = myobj.getString("Holiday");
                            String link = myobj.getString("OfficialWebsiteLink");
@@ -108,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                        }
                    }
                    Log.d("List", dataList.toString());
-                    MyAdapter myAdapter = new MyAdapter(dataList);
+                    MyAdapter myAdapter = new MyAdapter(getApplicationContext(), dataList);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                     recyclerView.setAdapter(myAdapter);
 
@@ -156,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         requestQueue.add(jsonObjectRequest);
-        MyAdapter myAdapter = new MyAdapter(dataList);
+        MyAdapter myAdapter = new MyAdapter(getApplicationContext(),dataList);
         recyclerView.setAdapter(myAdapter);
 //
     }

@@ -1,6 +1,8 @@
 package com.example.api;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +13,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.ViewTarget;
+
+import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     Context context;
     ModelDest data[];
 
+    public MyAdapter(Context context, ArrayList<ModelDest> data) {
+        this.context = context;
+        this.data = data.toArray(new ModelDest[0]);
+    }
 
     public MyAdapter() {
-        this.data = data.;
-        this.context=context;
+//        this.data = data;
+//        this.context=context;
     }
 
     @NonNull
@@ -39,8 +48,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.history.setText(data[position].getHistory());
         holder.location.setText(data[position].getLocation());
 //        holder.image.setImageURI(data[position].getThumb());
-        Glide.with(context).load(data[position].getThumb()).into(holder.image);
+        ViewTarget<ImageView, Drawable> g = Glide.with(context).load(data[position].getThumb()).into(holder.image);
         //holder.image.setImageBitmap(image);
+        Log.d("image", String.valueOf(g));
     }
 
 
