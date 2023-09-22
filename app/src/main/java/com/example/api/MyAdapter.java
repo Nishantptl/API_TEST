@@ -52,7 +52,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         //holder.image.setImageBitmap(image);
         Log.d("image", String.valueOf(g));
 
-        holder.list.setAdapter(M);
+//        holder.list.setAdapter();
     }
 
 
