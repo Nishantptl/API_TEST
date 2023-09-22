@@ -51,6 +51,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         ViewTarget<ImageView, Drawable> g = Glide.with(context).load(data[position].getThumb()).into(holder.image);
         //holder.image.setImageBitmap(image);
         Log.d("image", String.valueOf(g));
+
+        holder.list.setAdapter(M);
     }
 
 
@@ -64,6 +66,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         ImageView thumb;
         TextView destName, history, location;
         ImageView image;
+        RecyclerView list;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,6 +75,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             history = itemView.findViewById(R.id.History);
             location = itemView.findViewById(R.id.location);
             image = itemView.findViewById(R.id.imageView);
+            list = itemView.findViewById(R.id.list);
 
 //            Glide.with(context).load(data[]).into(image);
 

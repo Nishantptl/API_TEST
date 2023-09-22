@@ -32,6 +32,7 @@ import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -52,13 +53,14 @@ public class MainActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
 
         ArrayList<ModelDest> dataList = new ArrayList<>();
+        ArrayList<String>[] cat = new ArrayList[]{new ArrayList<>()};
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
                 url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    Log.d("Response", response.toString());
+                    Log.d("Check", response.toString());
                     JSONArray array = response.getJSONArray("data");    //data array
                    Log.d("array", array.toString());
                    if(array.length()>0){
@@ -72,9 +74,9 @@ public class MainActivity extends AppCompatActivity {
                            String attraction = myobj.getString("MainAttractions");
 
                            String uri = myobj.getString("Thumbnail");
-                          // Log.d("uri", uri);
+                           Log.d("buri", uri);
                            uri=uri.replace("localhost","192.168.51.236");
-
+                           Log.d("buri", uri);
                            String holiday = myobj.getString("Holiday");
                            String link = myobj.getString("OfficialWebsiteLink");
                            String location = myobj.getString("Location");
@@ -82,8 +84,14 @@ public class MainActivity extends AppCompatActivity {
                            String duration = myobj.getString("DurationOfVisit");
                            String rating = myobj.getString("Rating");
                            String createdat = myobj.getString("createdAt");
-//                           ArrayList<String> photos = myobj.getJSONArray("RelatedPhotos");
-                           dataList.add(new ModelDest(id, Destination, aboutPlace, History, attraction, uri, holiday,
+
+                           JSONArray category = myobj.getJSONArray("Category");
+                           cat[i] = new ArrayList((Collection) category);
+                           Log.d("cat", String.valueOf(category));
+//                           for(int j=0; j< category.length(); j++){
+//                               JSONObject obj = category.getJSONObject(j);
+//                           }
+                           dataList.add(new ModelDest(cat[i], id, Destination, aboutPlace, History, attraction, uri, holiday,
                                    link, location, district, duration, rating, createdat));
                        }
                    }
@@ -99,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("myapp", "Something went wrong");
+                Log.d("Check", String.valueOf(error));
             }
         });
         requestQueue.add(jsonObjectRequest);

@@ -4,6 +4,7 @@ package com.example.api;
 import android.net.Uri;
 
 import java.net.URI;
+import java.util.ArrayList;
 
 public class ModelDest {
 
@@ -13,14 +14,15 @@ public class ModelDest {
     String thumb;
 
 
-//    ArrayList<String> photos, category, season;
+    ArrayList<String> category;
 
     public ModelDest() {
     }
 
-    public ModelDest(String id, String destinationName, String aboutPlace, String history, String attraction, String thumb,
+    public ModelDest(ArrayList<String> category,String id, String destinationName, String aboutPlace, String history, String attraction, String thumb,
                      String holiday, String webLink, String location, String district, String duration, String rating, String createdAt) {
 
+        this.category = category;
         Id = id;
         this.destinationName = destinationName;
         this.aboutPlace = aboutPlace;
@@ -34,6 +36,14 @@ public class ModelDest {
         this.duration = duration;
         this.rating = rating;
         this.createdAt = createdAt;
+    }
+
+    public ArrayList<String> getCategory() {
+        return category;
+    }
+
+    public void setCategory(ArrayList<String> category) {
+        this.category = category;
     }
 
     public String getId() {
